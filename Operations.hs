@@ -1,7 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
-
-{-# LANGUAGE DeriveGeneric #-}
-
 module Operations where
 
 import qualified API as API
@@ -34,14 +30,6 @@ myCred = do
   return $ newCredential (sb !! 2) (sb !! 3)
 
 
--- Define Data Type
-
-data Tweet = Tweet { text :: !String } deriving (Show, Generic)
-
-instance FromJSON Tweet
-instance ToJSON Tweet
-
-
 -- Define Synonyms for Data Type
 
 type URL = String
@@ -50,15 +38,23 @@ type TResponse a = IO (Either String a)
 
 -- Define Operations for Using Twitter API
 
-getTweets :: FromJSON a => String -> TResponse a
-getTweets name = twitterRequest API.user_timeline [("screen_name",name)]
+dustBox :: Either String () -> IO ()
+dustBox _ = return ()
 
 postTweet :: FromJSON a => String -> TResponse a
 postTweet tw = twitterRequest API.update [("status",tw)]
+postTweet' tw = postTweet tw >>= dustBox
+
+getMentions :: FromJSON a => TResponse a
+getMentions = twitterRequest API.mentions_timeline []
+
+getTweets :: FromJSON a => String -> TResponse a
+getTweets name = twitterRequest API.user_timeline [("screen_name",name)]
 
 twitterRequest :: FromJSON a => API.API -> Option -> TResponse a
 twitterRequest (API.GET,url) opt = getRequest url opt
 twitterRequest (API.POST,url) opt = postRequest url opt
+twitterRequest' a o = twitterRequest a o >>= dustBox
 
 postRequest :: FromJSON a => URL -> Option -> TResponse a
 postRequest url opt = do
