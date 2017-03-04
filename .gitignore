@@ -1,0 +1,7 @@
+*.txt
+.stack-work
+!*.hs
+!*.yaml
+!TwitterBot.cabal
+!LICENSE
+!README.md

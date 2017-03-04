@@ -2,7 +2,6 @@ module Util where
 
 import System.Random
 import qualified Data.ByteString as B
-import Codec.Binary.UTF8.String as Codec
 import Data.Time
 import Text.Regex.Posix
 import qualified Codec.Binary.UTF8.String as U
@@ -14,10 +13,10 @@ randChoice l = do
   return $ l !! n
 
 strToB :: String -> B.ByteString
-strToB s = B.pack $ Codec.encode s
+strToB s = B.pack $ U.encode s
 
 bToStr :: B.ByteString -> String
-bToStr b = Codec.decode $ B.unpack b
+bToStr b = U.decode $ B.unpack b
 
 getTimeFormat :: String -> IO String
 getTimeFormat f = fmap (formatTime defaultTimeLocale f ) getZonedTime

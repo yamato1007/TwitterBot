@@ -1,3 +1,5 @@
+module Application where
+
 import Operations
 import Util
 import Settings
@@ -49,10 +51,3 @@ replyToTweet replyMap mention = do
   twitterRequest' API.update [("in_reply_to_status_id",id),("status",status)]
   putStrLn $ "Tweeted : " ++ status
 
-main :: IO ()
-main = do
-  tweetAtTime
-  tweetUsual
-  reply
-  printTweets "_momoco__"
-  printMentions
