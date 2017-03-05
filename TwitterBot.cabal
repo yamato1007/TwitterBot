@@ -27,6 +27,7 @@ library
                      , regex-posix
                      , containers
                      , utf8-string
+                     , text
                      , regex-posix
                      , http-conduit
                      , authenticate-oauth
