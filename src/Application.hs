@@ -28,7 +28,7 @@ printMentions = do
 
 tweetAtTime :: IO ()
 tweetAtTime = do 
-  time <- getTimeFormat "%H:%I"
+  time <- getTimeFormat "%H:%M"
   tm <- mapFromFile tweetAtTimeFile
   mapM_ tweetWithPrint $ lookup time tm 
 
