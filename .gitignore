@@ -1,5 +1,4 @@
 *.txt
-*.sh
 .stack-work
 !*.hs
 !*.yaml
