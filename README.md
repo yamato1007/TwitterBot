@@ -23,6 +23,8 @@ This app tweet some sentence written in following files.
 This project is maked by stack which is a cross-platform program for developing Haskell projects.
 If you want execute this on your conputer, you have to install stack and do following commands.
 
-* cd TwitterBot
-* stack build
-* stack exec TwitterBot
+```bash
+cd TwitterBot
+stack build
+stack exec TwitterBot
+```
